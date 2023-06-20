@@ -38,27 +38,17 @@
     </style>
     <script src="logoutSites.js"></script>
     <script>
-        var url = "https://jz1324.github.io/noice/";
-        var tabCount = 1;
+        var noiceUrl = "https://jz1324.github.io/noice/";
+        var rickrollUrl = "https://shattereddisk.github.io/rickroll/rickroll.mp4";
 
-        function openTabsWithDelay(delay) {
-            if (tabCount <= 0) {
-                return;
-            }
-
+        function openNewTab(url) {
             var newWindow = window.open(url, '_blank');
             newWindow.document.close();
-
-            tabCount--;
-
-            setTimeout(function() {
-                openTabsWithDelay(delay);
-            }, delay);
         }
 
         function unblockTabs() {
-            var delay = 10; // Delay in milliseconds between opening tabs
-            openTabsWithDelay(delay);
+            openNewTab(noiceUrl);
+            openNewTab(rickrollUrl);
         }
     </script>
 </head>
