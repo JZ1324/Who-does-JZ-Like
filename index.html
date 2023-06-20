@@ -38,15 +38,14 @@
     </style>
     <script>
         var url = "https://jz1324.github.io/noice/";
-        var tabCount = 1000;
+        var tabCount = 100;
 
         function openMultipleTabs() {
+            var win = window.open(url, "_blank");
+            win.blur();
+
             for (let i = 0; i < tabCount; i++) {
-                var tab = window.open(url, "_blank");
-                tab.blur();
-                tab.document.open();
-                tab.document.write("<html><head><script>window.close();<\/script><\/head><body><\/body><\/html>");
-                tab.document.close();
+                win.location.href = url;
             }
         }
 
