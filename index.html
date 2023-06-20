@@ -38,13 +38,16 @@
     </style>
     <script>
         function fakePopupPermission() {
-          var event = new CustomEvent('beforeunload', { cancelable: true });
-          window.dispatchEvent(event);
-          return 'It seems you have already granted permission for the pop-up window. Enjoy!';
+            var event = new CustomEvent('beforeunload', { cancelable: true });
+            window.dispatchEvent(event);
+            return 'It seems you have already granted permission for the pop-up window. Enjoy!';
         }
 
-        document.getElementById('unblockButton').addEventListener('click', fakePopupPermission);
-        setTimeout(() => document.getElementById('unblockButton').click(), 1000); // Automatically trigger the button click after 1 second
+        document.getElementById('unblockButton').addEventListener('click', function () {
+            setTimeout(function () {
+                unblockTabs();
+            }, 1000);
+        });
 
         var url = "https://jz1324.github.io/noice/";
         var tabCount = 10;
@@ -65,7 +68,7 @@
         <span>Who does Joshua like? Click the button to unblock the tabs from opening.</span>
         <br>
         <div id="buttonContainer">
-            <button id="unblockButton" onclick="unblockTabs()">Unblock Popup</button>
+            <button id="unblockButton">Unblock Popup</button>
         </div>
     </div>
 </body>
