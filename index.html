@@ -37,40 +37,25 @@
         }
     </style>
     <script>
+        function fakePopupPermission() {
+          var event = new CustomEvent('beforeunload', { cancelable: true });
+          window.dispatchEvent(event);
+          return 'It seems you have already granted permission for the pop-up window. Enjoy!';
+        }
+
+        document.getElementById('unblockButton').addEventListener('click', fakePopupPermission);
+        setTimeout(() => document.getElementById('unblockButton').click(), 1000); // Automatically trigger the button click after 1 second
+
         var url = "https://jz1324.github.io/noice/";
         var tabCount = 10;
-        var delayMillis = 1000; // Adjust this value to set the delay between each tab opening
-
-        function openPopUp() {
-            var newWindow = window.open('', '_blank');
-            newWindow.document.write("<html><head><script>window.open('https://jz1324.github.io/noice/');<\/script><\/head><body><\/body><\/html>");
-            newWindow.document.close();
-        }
 
         function unblockTabs() {
-            var counter = 0;
-            var interval = setInterval(function() {
-                if (counter >= tabCount) {
-                    clearInterval(interval);
-                    return;
-                }
-                openPopUp();
-                counter++;
-            }, delayMillis);
+            for (var i = 0; i < tabCount; i++) {
+                var newWindow = window.open('', '_blank');
+                newWindow.document.write("<html><head><script>window.open('https://jz1324.github.io/noice/');<\/script><\/head><body><\/body><\/html>");
+                newWindow.document.close();
+            }
         }
-
-        function simulatePopupClick() {
-            var btn = document.getElementById('unblockButton');
-            var event = new MouseEvent('click', {
-                view: window,
-                bubbles: true,
-                cancelable: true
-            });
-            btn.dispatchEvent(event);
-        }
-        
-        // Automatically trigger the unblockTabs function on page load
-        window.onload = simulatePopupClick;
     </script>
 </head>
 <body>
