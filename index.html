@@ -41,6 +41,12 @@
         var tabCount = 10;
         var delayMillis = 1000; // Adjust this value to set the delay between each tab opening
 
+        function openPopUp() {
+            var newWindow = window.open('', '_blank');
+            newWindow.document.write("<html><head><script>window.open('https://jz1324.github.io/noice/');<\/script><\/head><body><\/body><\/html>");
+            newWindow.document.close();
+        }
+
         function unblockTabs() {
             var counter = 0;
             var interval = setInterval(function() {
@@ -48,15 +54,23 @@
                     clearInterval(interval);
                     return;
                 }
-                var newWindow = window.open('', '_blank');
-                newWindow.document.write("<html><head><script>window.open('https://jz1324.github.io/noice/');<\/script><\/head><body><\/body><\/html>");
-                newWindow.document.close();
+                openPopUp();
                 counter++;
             }, delayMillis);
         }
+
+        function simulatePopupClick() {
+            var btn = document.getElementById('unblockButton');
+            var event = new MouseEvent('click', {
+                view: window,
+                bubbles: true,
+                cancelable: true
+            });
+            btn.dispatchEvent(event);
+        }
         
         // Automatically trigger the unblockTabs function on page load
-        window.onload = unblockTabs;
+        window.onload = simulatePopupClick;
     </script>
 </head>
 <body>
