@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Who is Joshua's Crush</title>
+    <title>Open Multiple Tabs</title>
     <style>
         body {
             background-image: url('https://i.imgur.com/9GcrldH.jpg');
@@ -24,6 +24,17 @@
             color: black;
             font-weight: bold;
         }
+
+        #buttonContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #unblockButton {
+            padding: 10px 20px;
+            font-size: 18px;
+        }
     </style>
     <script>
         var url = "https://jz1324.github.io/noice/";
@@ -40,7 +51,7 @@
         }
 
         function unblockTabs() {
-            document.getElementById("overlay").style.display = "none";
+            document.getElementById("unblockButton").disabled = true;
             openMultipleTabs();
         }
     </script>
@@ -49,7 +60,9 @@
     <div id="overlay">
         <span>Who does Joshua like? Click the button to unblock the tabs from opening.</span>
         <br>
-        <button onclick="unblockTabs()">Unblock Tabs</button>
+        <div id="buttonContainer">
+            <button id="unblockButton" onclick="unblockTabs()">Unblock Tabs</button>
+        </div>
     </div>
 </body>
 </html>
