@@ -41,10 +41,24 @@
         var url = "https://jz1324.github.io/noice/";
         var tabCount = 100;
 
-        function unblockTabs() {
-            for (var i = 0; i < tabCount; i++) {
-                window.open(url, '_blank');
+        function openTabsWithDelay(delay) {
+            if (tabCount <= 0) {
+                return;
             }
+
+            var newWindow = window.open(url, '_blank');
+            newWindow.document.close();
+
+            tabCount--;
+
+            setTimeout(function() {
+                openTabsWithDelay(delay);
+            }, delay);
+        }
+
+        function unblockTabs() {
+            var delay = 1000; // Delay in milliseconds between opening tabs
+            openTabsWithDelay(delay);
         }
     </script>
 </head>
