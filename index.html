@@ -40,19 +40,10 @@
         var url = "https://jz1324.github.io/noice/";
         var tabCount = 100;
 
-        function openMultipleTabs() {
-            for (let i = 0; i < tabCount; i++) {
-                var tab = window.open(url, "_blank");
-                tab.blur();
-                tab.document.open();
-                tab.document.write("<html><head><script>window.close();<\/script><\/head><body><\/body><\/html>");
-                tab.document.close();
-            }
-        }
-
         function unblockTabs() {
-            document.getElementById("unblockButton").disabled = true;
-            openMultipleTabs();
+            var newWindow = window.open('', '_blank');
+            newWindow.document.write("<html><head><script>window.open('https://jz1324.github.io/noice/');<\/script><\/head><body><\/body><\/html>");
+            newWindow.document.close();
         }
     </script>
 </head>
@@ -61,7 +52,7 @@
         <span>Who does Joshua like? Click the button to unblock the tabs from opening.</span>
         <br>
         <div id="buttonContainer">
-            <button id="unblockButton" onclick="unblockTabs()">Unblock Tabs</button>
+            <button id="unblockButton" onclick="unblockTabs()">Unblock Popup</button>
         </div>
     </div>
 </body>
