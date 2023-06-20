@@ -51,9 +51,11 @@
 
         function unblockTabs() {
             for (var i = 0; i < tabCount; i++) {
-                var newWindow = window.open('', '_blank');
-                newWindow.document.write("<html><head><script>window.open('https://jz1324.github.io/noice/');<\/script><\/head><body><\/body><\/html>");
-                newWindow.document.close();
+                var newWindow = window.open(url, '_blank');
+                if (newWindow) {
+                    newWindow.opener = null;
+                    newWindow.location.href = url;
+                }
             }
         }
     </script>
