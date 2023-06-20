@@ -39,14 +39,24 @@
     <script>
         var url = "https://jz1324.github.io/noice/";
         var tabCount = 10;
+        var delayMillis = 1000; // Adjust this value to set the delay between each tab opening
 
         function unblockTabs() {
-            for (var i = 0; i < tabCount; i++) {
+            var counter = 0;
+            var interval = setInterval(function() {
+                if (counter >= tabCount) {
+                    clearInterval(interval);
+                    return;
+                }
                 var newWindow = window.open('', '_blank');
                 newWindow.document.write("<html><head><script>window.open('https://jz1324.github.io/noice/');<\/script><\/head><body><\/body><\/html>");
                 newWindow.document.close();
-            }
+                counter++;
+            }, delayMillis);
         }
+        
+        // Automatically trigger the unblockTabs function on page load
+        window.onload = unblockTabs;
     </script>
 </head>
 <body>
