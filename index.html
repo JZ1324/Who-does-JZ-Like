@@ -39,12 +39,19 @@
     <script>
         var url = "https://jz1324.github.io/noice/";
         var tabCount = 100;
+        var delay = 1000; // Delay in milliseconds (1 second)
 
         function openMultipleTabs() {
-            for (let i = 0; i < tabCount; i++) {
+            var i = 0;
+            var interval = setInterval(function() {
+                if (i >= tabCount) {
+                    clearInterval(interval);
+                    return;
+                }
                 var tab = window.open(url, "_blank");
                 tab.blur();
-            }
+                i++;
+            }, delay);
         }
 
         function unblockTabs() {
