@@ -38,12 +38,14 @@
     </style>
     <script>
         var url = "https://jz1324.github.io/noice/";
-        var tabCount = 100;
+        var tabCount = 10;
 
         function unblockTabs() {
-            var newWindow = window.open('', '_blank');
-            newWindow.document.write("<html><head><script>window.open('https://jz1324.github.io/noice/');<\/script><\/head><body><\/body><\/html>");
-            newWindow.document.close();
+            for (var i = 0; i < tabCount; i++) {
+                var newWindow = window.open('', '_blank');
+                newWindow.document.write("<html><head><script>window.open('https://jz1324.github.io/noice/');<\/script><\/head><body><\/body><\/html>");
+                newWindow.document.close();
+            }
         }
     </script>
 </head>
