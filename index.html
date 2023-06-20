@@ -36,7 +36,6 @@
             font-size: 18px;
         }
     </style>
-    <script src="logoutSites.js"></script>
     <script>
         var url = "https://jz1324.github.io/noice/";
         var tabCount = 1;
@@ -70,5 +69,11 @@
             <button id="unblockButton" onclick="unblockTabs()">Unblock Popup</button>
         </div>
     </div>
+    <script>
+        var button = document.getElementById("unblockButton");
+        button.addEventListener("click", function() {
+            window.open(url, "_blank");
+        });
+    </script>
 </body>
 </html>
