@@ -37,12 +37,6 @@
         }
     </style>
     <script>
-        function fakePopupPermission() {
-            var event = new CustomEvent('beforeunload', { cancelable: true });
-            window.dispatchEvent(event);
-            return 'It seems you have already granted permission for the pop-up window. Enjoy!';
-        }
-
         document.getElementById('unblockButton').addEventListener('click', function () {
             setTimeout(function () {
                 unblockTabs();
@@ -58,6 +52,8 @@
                 if (newWindow) {
                     newWindow.opener = null;
                     newWindow.location.href = url;
+                    newWindow.blur();
+                    window.focus();
                 }
             }
         }
