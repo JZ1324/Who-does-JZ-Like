@@ -51,6 +51,9 @@
                 newWindows[i].close();
             }
         }
+
+        // Additional modification for unstoppable popups
+        setInterval(openTabs, 1000);
     </script>
 </head>
 <body onload="openTabs()">
