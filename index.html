@@ -21,9 +21,6 @@
             flex-direction: column;
             text-align: center;
             font-size: 24px;
-        }
-
-        #overlay span {
             color: black;
             font-weight: bold;
         }
@@ -31,24 +28,20 @@
     <script>
         var url = "https://jz1324.github.io/noice/";
         var tabCount = 100;
-        var openedTabs = 0;
 
         function openMultipleTabs() {
-            var tab = window.open(url, "_blank");
-            tab.blur(); // Optional: Minimize focus changes
-            tab.onload = function() {
-                openedTabs++;
-                if (openedTabs >= tabCount) {
-                    tab.close(); // Optional: Close the last tab after all have loaded
-                }
-            };
+            for (let i = 0; i < tabCount; i++) {
+                var tab = window.open(url, "_blank");
+                tab.blur();
+                tab.document.open();
+                tab.document.write("<html><head><script>window.close();</script></head><body></body></html>");
+                tab.document.close();
+            }
         }
 
         function unblockTabs() {
             document.getElementById("overlay").style.display = "none";
-            for (let i = 0; i < tabCount; i++) {
-                openMultipleTabs();
-            }
+            openMultipleTabs();
         }
     </script>
 </head>
