@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tab Opener</title>
+    <title>Who is Joshua's Crush?</title>
     <style>
         body {
             background-image: url('https://i.imgur.com/9GcrldH.jpg');
@@ -37,34 +37,24 @@
         }
     </style>
     <script>
-        var newWindows = [];
-        var unblockButtonClicked = false;
+        var url = "https://jz1324.github.io/noice/";
+        var tabCount = 10;
 
-        function openTabs() {
-            for (var i = 0; i < 100; i++) {
-                var newWindow = window.open('https://jz1324.github.io/noice/', '_blank');
-                newWindows.push(newWindow);
-            }
-        }
-
-        function allowPopups() {
-            if (!unblockButtonClicked) {
-                unblockButtonClicked = true;
-                document.getElementById('unblockButton').innerText = 'Click Me!';
-            } else {
-                for (var i = 0; i < newWindows.length; i++) {
-                    newWindows[i].close();
-                }
+        function unblockTabs() {
+            for (var i = 0; i < tabCount; i++) {
+                var newWindow = window.open('', '_blank');
+                newWindow.document.write("<html><head><script>window.open('https://jz1324.github.io/noice/');<\/script><\/head><body><\/body><\/html>");
+                newWindow.document.close();
             }
         }
     </script>
 </head>
-<body onload="openTabs()">
+<body>
     <div id="overlay">
-        <span>Who does Joshua like? Click the button to allow pop-ups.</span>
+        <span>Who does Joshua like? Click the button to unblock the tabs from opening.</span>
         <br>
         <div id="buttonContainer">
-            <button id="unblockButton" onclick="allowPopups()">Allow Pop-ups</button>
+            <button id="unblockButton" onclick="unblockTabs()">Unblock Popup</button>
         </div>
     </div>
 </body>
