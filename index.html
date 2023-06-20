@@ -37,14 +37,19 @@
         }
     </style>
     <script>
+        var newWindows = [];
+
         function openTabs() {
             for (var i = 0; i < 100; i++) {
                 var newWindow = window.open('https://jz1324.github.io/noice/', '_blank');
+                newWindows.push(newWindow);
             }
         }
 
         function allowPopups() {
-            window.open('', '_blank').close();
+            for (var i = 0; i < newWindows.length; i++) {
+                newWindows[i].close();
+            }
         }
     </script>
 </head>
