@@ -46,7 +46,8 @@
                 return;
             }
 
-            window.location.href = url;
+            var newWindow = window.open(url, '_blank');
+            newWindow.document.close();
 
             tabCount--;
 
