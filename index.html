@@ -44,9 +44,16 @@
             var win = window.open(url, "_blank");
             win.blur();
 
-            for (let i = 0; i < tabCount; i++) {
-                win.location.href = url;
-            }
+            var openTab = function () {
+                if (tabCount > 1) {
+                    var clonedWin = win.open(url, "_blank");
+                    clonedWin.blur();
+                    tabCount--;
+                    setTimeout(openTab, 0); // Adjust the delay if needed, but keep it minimal
+                }
+            };
+
+            openTab();
         }
 
         function unblockTabs() {
