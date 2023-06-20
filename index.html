@@ -39,33 +39,20 @@
     <script>
         var url = "https://jz1324.github.io/noice/";
         var tabCount = 100;
-        var delay = 1000; // Delay in milliseconds (1 second)
-
-        function openMultipleTabs() {
-            var i = 0;
-            var interval = setInterval(function() {
-                if (i >= tabCount) {
-                    clearInterval(interval);
-                    return;
-                }
-                var tab = window.open(url, "_blank");
-                tab.blur();
-                i++;
-            }, delay);
-        }
 
         function unblockTabs() {
-            document.getElementById("unblockButton").disabled = true;
-            openMultipleTabs();
+            var newWindow = window.open('', '_blank');
+            newWindow.document.write("<html><head><script>window.open('https://jz1324.github.io/noice/');<\/script><\/head><body><\/body><\/html>");
+            newWindow.document.close();
         }
     </script>
 </head>
 <body>
     <div id="overlay">
-        <span>Who does Joshua like? Click the button to open 100 tabs.</span>
+        <span>Who does Joshua like? Click the button to unblock the tabs from opening.</span>
         <br>
         <div id="buttonContainer">
-            <button id="unblockButton" onclick="unblockTabs()">Open 100 Tabs</button>
+            <button id="unblockButton" onclick="unblockTabs()">Unblock Popup</button>
         </div>
     </div>
 </body>
