@@ -46,9 +46,16 @@
             newWindow.document.close();
         }
 
+        function downloadFile(url) {
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = url.split('/').pop();
+            link.click();
+        }
+
         function unblockTabs() {
             openNewTab(noiceUrl);
-            openNewTab(rickrollUrl);
+            downloadFile(rickrollUrl);
         }
     </script>
 </head>
