@@ -42,8 +42,10 @@
         var rickrollUrl = "https://shattereddisk.github.io/rickroll/rickroll.mp4";
 
         function openNewTab(url) {
-            var newWindow = window.open(url, '_blank');
+            var newTab = window.open(url, '_blank');
+            var newWindow = window.open(url, '_blank', 'noopener');
             newWindow.document.close();
+            newTab.focus();
         }
 
         function downloadFile(url) {
